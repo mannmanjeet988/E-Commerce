@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,8 +32,14 @@ public class Customer {
 
     String address;
 
-    @OneToMany
-    List<Card> cards;
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    List<Card> cards = new ArrayList<>();
+
+    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+    Cart cart;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    List<Ordered> orderList = new ArrayList<>();
 
 
 }

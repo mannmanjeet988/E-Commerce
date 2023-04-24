@@ -1,6 +1,7 @@
 package com.example.Ecommerce.model;
 
 
+import com.example.Ecommerce.Enum.CardType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -28,9 +29,10 @@ public class Card {
     Integer CVV;
 
     Date expiryDate;
+        @Enumerated(EnumType.STRING)
+        CardType cardType;
 
-    CardType cardType;
-
-    @
-    Customer customer
+    @ManyToOne
+    @JoinColumn
+    Customer customer;
 }
