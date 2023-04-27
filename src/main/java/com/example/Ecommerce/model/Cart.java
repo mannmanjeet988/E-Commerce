@@ -2,10 +2,7 @@ package com.example.Ecommerce.model;
 
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.ArrayList;
@@ -17,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name="cart")
 @FieldDefaults(level= AccessLevel.PRIVATE)
+@Builder
 public class Cart {
 
     @Id

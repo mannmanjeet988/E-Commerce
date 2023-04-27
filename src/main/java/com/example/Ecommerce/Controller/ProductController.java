@@ -4,7 +4,7 @@ import com.example.Ecommerce.Dto.RequestDto.ProductRequestDto;
 import com.example.Ecommerce.Dto.ResponseDto.ProductResponseDto;
 import com.example.Ecommerce.Enum.ProductCategory;
 import com.example.Ecommerce.Exceptions.InvalidSellerException;
-import com.example.Ecommerce.Service.ProductService;
+import com.example.Ecommerce.Service.Impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
     @Autowired
-    ProductService productService;
+    ProductServiceImpl productService;
 
     @PostMapping("/add")
     public ProductResponseDto addProduct(@RequestBody ProductRequestDto productRequestDto) throws InvalidSellerException {

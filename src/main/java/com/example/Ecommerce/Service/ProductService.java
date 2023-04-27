@@ -4,58 +4,11 @@ import com.example.Ecommerce.Dto.RequestDto.ProductRequestDto;
 import com.example.Ecommerce.Dto.ResponseDto.ProductResponseDto;
 import com.example.Ecommerce.Enum.ProductCategory;
 import com.example.Ecommerce.Exceptions.InvalidSellerException;
-import com.example.Ecommerce.Repository.ProductRepository;
-import com.example.Ecommerce.Repository.SellerRepository;
-import com.example.Ecommerce.model.Product;
-import com.example.Ecommerce.model.Seller;
-import com.example.Ecommerce.transformer.ProductTransformer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class ProductService {
+public interface ProductService {
 
-    @Autowired
-    SellerRepository sellerRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
-
-    public ProductResponseDto addProduct(ProductRequestDto productRequestDto) throws InvalidSellerException{
-        Seller seller;
-        try{
-            seller =  sellerRepository.findById(productRequestDto.getSellerId()).get();
-        } catch(Exception e){
-            throw new InvalidSellerException("Seller does not exist");
-        }
-
-        Product product = ProductTransformer.ProductRequestDtoToProduct(productRequestDto);
-        product.setSeller(seller);
-
-        // add product to current products of seller
-        seller.getProducts().add(product);
-        sellerRepository.save(seller);  // saves both seller and product
-
-        // prepare Response Dto
-        return ProductTransformer.ProductToProductResponseDto(product);
-    }
-
-    public List<ProductResponseDto> getAllProductsByCategory(ProductCategory category){
-
-        List<Product> products = productRepository.findByProductCategory(category);
-
-        List<ProductResponseDto> productResponseDtos = new ArrayList<>();
-        for(Product product: products){
-            productResponseDtos.add(ProductTransformer.ProductToProductResponseDto(product));
-        }
-
-        return productResponseDtos;
-    }
-
-    }
-
-
-
+    public ProductResponseDto addProduct(ProductRequestDto productRequestDto) throws InvalidSellerException;
+    public List<ProductResponseDto> getAllProductsByCategory(ProductCategory category);
+}

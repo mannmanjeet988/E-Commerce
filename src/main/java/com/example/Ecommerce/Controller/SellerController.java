@@ -2,7 +2,7 @@ package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Dto.RequestDto.SellerRequestDto;
 import com.example.Ecommerce.Dto.ResponseDto.SellerResponseDto;
-import com.example.Ecommerce.Service.SellerService;
+import com.example.Ecommerce.Service.Impl.SellerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SellerController {
 
     @Autowired
-    SellerService sellerService;
+    SellerServiceImpl sellerService;
 
     @PostMapping("/add")
     public ResponseEntity addSeller(@RequestBody SellerRequestDto sellerRequestDto){

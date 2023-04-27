@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface CustomerRepository  extends JpaRepository<Customer,Integer> {
 
-
+     Customer findByMobNo(String mobNo);
 
     }
 

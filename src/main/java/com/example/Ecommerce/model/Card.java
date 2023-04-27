@@ -3,10 +3,7 @@ package com.example.Ecommerce.model;
 
 import com.example.Ecommerce.Enum.CardType;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
@@ -17,6 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Table(name="card")
 @FieldDefaults(level= AccessLevel.PRIVATE)
+@Builder
 public class Card {
 
     @Id
@@ -26,11 +24,11 @@ public class Card {
     @Column(unique = true, nullable = false)
     String cardNo;
 
-    Integer CVV;
+    Integer cvv;
 
     Date expiryDate;
-        @Enumerated(EnumType.STRING)
-        CardType cardType;
+    @Enumerated(EnumType.STRING)
+    CardType cardType;
 
     @ManyToOne
     @JoinColumn
