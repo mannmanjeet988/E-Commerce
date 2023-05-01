@@ -7,4 +7,5 @@ import com.example.Ecommerce.Exceptions.MobileNoAlreadyPresentException;
 public interface CustomerService {
 
     public CustomerResponseDto addCustomer(CustomerRequestDto customerRequestDto) throws MobileNoAlreadyPresentException;
+
 }

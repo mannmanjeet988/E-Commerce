@@ -20,7 +20,7 @@ public class CardController {
     CardService cardService;
 
     @PostMapping("/add")
-    public ResponseEntity addCard(@RequestBody CardRequestDto cardRequestDto) {
+    public ResponseEntity addCard(@RequestBody CardRequestDto cardRequestDto) throws InvalidCustomerException {
         try {
             CardResponseDto cardResponseDto = cardService.addCard(cardRequestDto);
             return new ResponseEntity(cardResponseDto, HttpStatus.CREATED);

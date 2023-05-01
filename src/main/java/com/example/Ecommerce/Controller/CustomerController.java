@@ -6,8 +6,6 @@ import com.example.Ecommerce.Dto.ResponseDto.CustomerResponseDto;
 import com.example.Ecommerce.Exceptions.MobileNoAlreadyPresentException;
 import com.example.Ecommerce.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

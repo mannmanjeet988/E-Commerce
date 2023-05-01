@@ -28,13 +28,14 @@ public class CardServiceImpl implements CardService {
         card.setCustomer(customer);
 
         customer.getCards().add(card);
-
+        customerRepository.save(customer);
         //response dto
 
         return CardResponseDto.builder()
         .customerName(customer.getName())
                 .cardNo(card.getCardNo())
                 .build();
+
     }
 
 }

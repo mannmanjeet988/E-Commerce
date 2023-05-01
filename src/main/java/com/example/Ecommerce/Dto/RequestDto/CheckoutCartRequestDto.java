@@ -1,24 +1,18 @@
 package com.example.Ecommerce.Dto.RequestDto;
 
-import com.example.Ecommerce.Enum.CardType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import java.sql.Date;
-import java.util.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Builder
-public class CardRequestDto {
-    String mobNo;
+public class CheckoutCartRequestDto {
+
+    int customerId;
 
     String cardNo;
 
     int cvv;
-
-    Date expiryDate;
-
-    CardType cardType;
 }
