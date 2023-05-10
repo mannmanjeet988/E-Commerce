@@ -36,4 +36,33 @@ public class SellerServiceImpl implements SellerService {
 
     }
 
+    public String deleteSeller(int id){
+        sellerRepository.deleteById(id);
+        return "Seller having id " + id+ " is deleted ";
+    }
+
+    public SellerResponseDto getByEmailId(String emailId){
+
+        Seller seller = sellerRepository.findByEmailId(emailId);
+        SellerResponseDto sellerResponseDto = new SellerResponseDto();
+
+        sellerResponseDto.setName(seller.getName());
+        sellerResponseDto.setAge(seller.getAge());
+
+        return sellerResponseDto;
+
+
+    }
+
+    @Override
+    public SellerResponseDto getSellerById(int id) {
+        Seller seller = sellerRepository.findById(id).get();
+        SellerResponseDto sellerResponseDto = new SellerResponseDto();
+
+        sellerResponseDto.setName(seller.getName());
+        sellerResponseDto.setAge(seller.getAge());
+
+        return sellerResponseDto;
+    }
+
 }

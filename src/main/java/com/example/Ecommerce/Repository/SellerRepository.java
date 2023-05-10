@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
     public interface SellerRepository extends JpaRepository<Seller,Integer> {
 
-        Seller findByEmailId(String email);
+        Seller findByEmailId(String emailId);
     }
 

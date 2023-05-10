@@ -14,20 +14,19 @@ import com.example.Ecommerce.Service.OrderService;
 import com.example.Ecommerce.Service.ProductService;
 import com.example.Ecommerce.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.Date;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
-    private JavaMailSender emailSender;
+//    @Autowired
+//    private JavaMailSender emailSender;
     @Autowired
     ProductService productService;
 
@@ -47,10 +46,12 @@ public class OrderServiceImpl implements OrderService {
         Cart cart = customer.getCart();
 
         Ordered order = new Ordered();
+        Date date = new Date();
+        order.setOrderDate(date);
         order.setOrderNo(String.valueOf(UUID.randomUUID()));
 
-        String maskedNumber = generateMaskedCard(card.getCardNo());
-        order.setOrderNo(maskedNumber);
+        String maskedCardNumber = generateMaskedCard(card.getCardNo());
+        order.setCardUsed(maskedCardNumber);
         order.setCustomer(customer);
 
         List<Item> orderedItems = new ArrayList<>();
@@ -118,7 +119,7 @@ public class OrderServiceImpl implements OrderService {
         Ordered savedOrder = orderedRepository.save(order); // order and item
 
         OrderResponseDto orderResponseDto = new OrderResponseDto();
-        orderResponseDto.setOrderDate((Date) savedOrder.getOrderDate());
+        orderResponseDto.setOrderDate( savedOrder.getOrderDate());
         orderResponseDto.setCardUsed(savedOrder.getCardUsed());
         orderResponseDto.setCustomerName(customer.getName());
         orderResponseDto.setOrderNo(savedOrder.getOrderNo());
@@ -137,14 +138,14 @@ public class OrderServiceImpl implements OrderService {
 
         orderResponseDto.setItems(items);
 
-        String text = "Congrats! " + savedOrder.getCustomer().getName() + " You have placed order of value(Rs.)  " + savedOrder.getTotalValue();
-
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("acciobackend111@gmail.com");
-        message.setTo(savedOrder.getCustomer().getEmailId());
-        message.setSubject("Order Placed");
-        message.setText(text);
-        emailSender.send(message);
+//        String text = "Congrats! " + savedOrder.getCustomer().getName() + " You have placed order of value(Rs.)  " + savedOrder.getTotalValue();
+//
+//        SimpleMailMessage message = new SimpleMailMessage();
+//        message.setFrom("acciobackend111@gmail.com");
+//        message.setTo(savedOrder.getCustomer().getEmailId());
+//        message.setSubject("Order Placed");
+//        message.setText(text);
+//        emailSender.send(message);
 
         return orderResponseDto;
 

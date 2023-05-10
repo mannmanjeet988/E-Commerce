@@ -6,10 +6,7 @@ import com.example.Ecommerce.Service.Impl.SellerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/seller")
@@ -27,6 +24,22 @@ public class SellerController {
         catch (Exception e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteSeller(@RequestParam("id") int id){
+        sellerService.deleteSeller(id);
+        return "Seller having id " + id+ " is deleted ";
+    }
+
+    @GetMapping("/get_by_email")
+    public SellerResponseDto getSellerByEmail(@RequestParam String emailId){
+        return sellerService.getByEmailId(emailId);
+    }
+
+    @GetMapping("/get_by_id")
+    public SellerResponseDto getSellerById(@RequestParam int id){
+        return sellerService.getSellerById(id);
     }
 
     //  GET a seller by email

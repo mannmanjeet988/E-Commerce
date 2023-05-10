@@ -3,13 +3,11 @@ package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Dto.RequestDto.CustomerRequestDto;
 import com.example.Ecommerce.Dto.ResponseDto.CustomerResponseDto;
+import com.example.Ecommerce.Dto.ResponseDto.SellerResponseDto;
 import com.example.Ecommerce.Exceptions.MobileNoAlreadyPresentException;
 import com.example.Ecommerce.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/customer")
@@ -23,6 +21,12 @@ public class CustomerController {
 
         return customerService.addCustomer(customerRequestDto);
     }
+
+    @GetMapping("/get_by_email")
+    public CustomerResponseDto getCustomerByEmail(@RequestParam String emailId){
+        return customerService.getByEmailId(emailId);
+    }
+
 
     // view all customers
 
